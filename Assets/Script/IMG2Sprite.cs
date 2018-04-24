@@ -31,6 +31,10 @@ public class IMG2Sprite : MonoBehaviour {
 
 		Sprite NewSprite = new Sprite();
 		Texture2D SpriteTexture = LoadTexture(FilePath);
+        if (SpriteTexture == null)
+        {
+            Debug.Log(FilePath);
+        }
 		NewSprite = Sprite.Create(SpriteTexture, new Rect(0, 0, SpriteTexture.width, SpriteTexture.height),new Vector2(0,0), PixelsPerUnit);
 
 		return NewSprite;
@@ -44,6 +48,12 @@ public class IMG2Sprite : MonoBehaviour {
 		Texture2D Tex2D;
 		byte[] FileData;
 
+        
+        if (FilePath.EndsWith(".dxt"))
+        {
+            Tex2D = LoadTextureDXT.Load(FilePath, false);
+            return Tex2D;
+        }
 		if (File.Exists(FilePath)){
 #if (!UNITY_WSA) || UNITY_EDITOR
 			FileData = File.ReadAllBytes(FilePath);

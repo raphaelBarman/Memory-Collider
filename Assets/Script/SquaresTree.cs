@@ -12,7 +12,7 @@ public class SquaresTree {
         int numRows = Mathf.FloorToInt(height/maxSize);
         for (int i = 0; i < numColumns; i++) {
             for (int j = 0; j < numRows; j++) {
-                topCells.Add(new SquareCell(maxSize, minSize, offset + new Vector2(-width/2 + (i+0.5f)*maxSize, -height/2 + (j+0.5f)*maxSize)));
+                topCells.Add(new SquareCell(maxSize, minSize, offset + new Vector2(-width/2.0f + (i+0.5f)*maxSize, -height/2.0f + (j+0.5f)*maxSize)));
             }
         }
     }
@@ -33,7 +33,7 @@ public class SquaresTree {
             .ToList();
         SquareCell choice = squares[UnityEngine.Random.Range(0, squares.Count)];
         choice.setBusy();
-        //Debug.Log("Side: "+ choice.side + ", topLeft: " + choice.center + ", num choices: " + squares.Count);
+//        Debug.Log("Side: "+ choice.side + ", topLeft: " + choice.center + ", num choices: " + squares.Count);
         return choice;
     }
 }
