@@ -7,12 +7,12 @@ using System.Linq;
 public class SquaresTree {
     private List<SquareCell> topCells = new List<SquareCell>();
 
-    public SquaresTree(float width, float height, float maxSize, float minSize, Vector2 offset) {
+    public SquaresTree(float width, float height, float maxSize, float minSize, Vector3 offset) {
         int numColumns = Mathf.FloorToInt(width/maxSize);
         int numRows = Mathf.FloorToInt(height/maxSize);
         for (int i = 0; i < numColumns; i++) {
             for (int j = 0; j < numRows; j++) {
-                topCells.Add(new SquareCell(maxSize, minSize, offset + new Vector2(-width/2.0f + (i+0.5f)*maxSize, -height/2.0f + (j+0.5f)*maxSize)));
+                topCells.Add(new SquareCell(maxSize, minSize, offset + new Vector3(-width/2.0f + (i+0.5f)*maxSize, -height/2.0f + (j+0.5f)*maxSize)));
             }
         }
     }
@@ -33,26 +33,26 @@ public class SquaresTree {
             .ToList();
         SquareCell choice = squares[UnityEngine.Random.Range(0, squares.Count)];
         choice.setBusy();
-//        Debug.Log("Side: "+ choice.side + ", topLeft: " + choice.center + ", num choices: " + squares.Count);
+        Debug.Log("Side: "+ choice.side + ", center: " + choice.center + ", num choices: " + squares.Count);
         return choice;
     }
 }
 
 public class SquareCell {
     public float side;
-    public Vector2 center;
+    public Vector3 center;
     private List<SquareCell> children = new List<SquareCell>();
     public bool busy = false;
 
-    public SquareCell(float side, float minSize, Vector2 center) {
+    public SquareCell(float side, float minSize, Vector3 center) {
         this.side = side;
         this.center = center;
         float childrenSide = side/2;
         if (childrenSide >= minSize) {
             for (int i = -1; i < 2; i +=2) {
                 for (int j = -1; j < 2; j +=2) {
-                    Vector2 childTopRight = center + new Vector2(i*0.5f*childrenSide, j*0.5f*childrenSide);
-                    children.Add(new SquareCell(childrenSide, minSize, childTopRight));
+                    Vector3 childCenter = center + new Vector3(i*0.5f*childrenSide, j*0.5f*childrenSide);
+					children.Add(new SquareCell(childrenSide, minSize, childCenter));
                 }
             }
         }

@@ -39,7 +39,7 @@ public class SliceController : MonoBehaviour
         //float available_size = (1-(filenames.Length+1)*0.01f)*Mathf.Min(canvasRect.rect.width, canvasRect.rect.height);
         //float min_width = available_size/8;
         //float max_width = available_size/2;
-        SquaresTree sqt = new SquaresTree(canvasRect.rect.width, canvasRect.rect.height, 125, 75, canvasRect.position);
+        SquaresTree sqt = new SquaresTree(canvasRect.rect.width, canvasRect.rect.height, 250, 75, canvasRect.position);
 
         for (int i = 0; i < filenames.Length; i++)
         {
@@ -50,7 +50,7 @@ public class SliceController : MonoBehaviour
             img.transform.SetParent(images.transform);
             (img.GetComponent<ImageController>()).SetUpImage(filenames[i]);
             (img.GetComponent<ImageController>()).SetSize(size, size);
-            (img.GetComponent<ImageController>()).SetPos(sqc.center);
+			(img.GetComponent<ImageController>()).SetPos(sqc.center);
         }
     }
     // Use this for initialization
@@ -60,17 +60,17 @@ public class SliceController : MonoBehaviour
         RectTransform canvasRect = GetComponent<RectTransform>();
         createBorders(canvasRect);
 
-        string[] files = new string[] { "metallica-1.jpg", "metallica-45.jpg", "metallica-3.jpg", "metallica-24.jpg", "1950s/Inside the Lab/9703009_03.jpeg.dxt" };
-        files = Directory.GetFiles("D:/testconverted/", "*.dxt");
+        string[] files = new string[] { "metallica-1.jpg", "metallica-45.jpg", "metallica-3.jpg", "metallica-24.jpg" };
+        //files = Directory.GetFiles("D:/testconverted/", "*.dxt");
         string imagesPath = Application.dataPath + "/Images/";
 
         string[] images = new string[50];
-        for (int i = 0; i < images.Length; i++)
+		for (int i = 0; i < files.Length; i++)
         {
-            images[i] = files[i % files.Length];
+			images[i] = imagesPath + files[i % files.Length];
         }
         spawnImages(canvasRect, images);
-        new SquaresAssigner(100, 100, 50, 10, new Vector2(0, 0));
+		//new SquaresAssigner(100, 100, 50, 10, new Vector3(0, 0, canvasRect.position.z));
         //SquaresTree sq = new SquaresTree(8, 8, 4, 1);
     }
     // Update is called once per frame

@@ -40,7 +40,7 @@ public class SliceSpawner : MonoBehaviour
         {
             GameObject slice = Instantiate(Slice);
             slice.name = string.Format("Slice{00}", i);
-            slice.GetComponent<RectTransform>().transform.position = new Vector2(i * 1600, 0);
+            slice.GetComponent<RectTransform>().transform.position = new Vector3(i * 1600, 0, -5000);
             Slices.Add(slice);
         }
     }
@@ -49,6 +49,7 @@ public class SliceSpawner : MonoBehaviour
     {
         GameObject slice = Instantiate(Slice);
         slice.name = string.Format("Slice");
+		slice.GetComponent<RectTransform> ().transform.position = new Vector3 (0, 0, -5000);
         slice.GetComponent<RectTransform>().sizeDelta = new Vector2(16000, 2000);
         Slices.Add(slice);
     }
