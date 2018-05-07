@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class SliceController : MonoBehaviour
@@ -36,11 +33,10 @@ public class SliceController : MonoBehaviour
         GameObject images = new GameObject();
         images.name = "Images";
         images.transform.SetParent(canvasRect.transform);
-        //float available_size = (1-(filenames.Length+1)*0.01f)*Mathf.Min(canvasRect.rect.width, canvasRect.rect.height);
-        //float min_width = available_size/8;
-        //float max_width = available_size/2;
-        SquaresTree sqt = new SquaresTree(canvasRect.rect.width, canvasRect.rect.height, 250, 75, canvasRect.position);
-
+        float available_size = (1-(filenames.Length+1)*0.01f)*Mathf.Min(canvasRect.rect.width, canvasRect.rect.height);
+        float min_width = available_size/4;
+        float max_width = available_size;
+        SquaresTree sqt = new SquaresTree(canvasRect.rect.width, canvasRect.rect.height, max_width, min_width, canvasRect.position);
         for (int i = 0; i < filenames.Length; i++)
         {
             SquareCell sqc = sqt.getSquare();
@@ -59,13 +55,13 @@ public class SliceController : MonoBehaviour
 
         RectTransform canvasRect = GetComponent<RectTransform>();
         createBorders(canvasRect);
-
+        Debug.Log("here");
         string[] files = new string[] { "metallica-1.jpg", "metallica-45.jpg", "metallica-3.jpg", "metallica-24.jpg" };
         //files = Directory.GetFiles("D:/testconverted/", "*.dxt");
         string imagesPath = Application.dataPath + "/Images/";
 
         string[] images = new string[50];
-		for (int i = 0; i < files.Length; i++)
+		for (int i = 0; i < images.Length; i++)
         {
 			images[i] = imagesPath + files[i % files.Length];
         }
@@ -76,5 +72,19 @@ public class SliceController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    }
+
+    public void SetColor(Color color)
+    {
+        Image[] imgs = GetComponentsInChildren<Image>();
+        Image image = null;
+        foreach (Image img in imgs)
+        {
+            if (img.tag == "Panel")
+            {
+                image = img;
+            }
+        }
+        image.color = color;
     }
 }

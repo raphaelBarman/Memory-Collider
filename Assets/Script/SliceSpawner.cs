@@ -40,8 +40,9 @@ public class SliceSpawner : MonoBehaviour
         {
             GameObject slice = Instantiate(Slice);
             slice.name = string.Format("Slice{00}", i);
-            slice.GetComponent<RectTransform>().transform.position = new Vector3(i * 1600, 0, -5000);
+            slice.GetComponent<RectTransform>().transform.position = new Vector3(i * 1600+800, 0, -5000);
             Slices.Add(slice);
+            slice.GetComponent<SliceController>().SetColor(i % 2 == 0 ? Color.black : Color.gray);
         }
     }
 

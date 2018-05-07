@@ -33,7 +33,7 @@ public class SquaresTree {
             .ToList();
         SquareCell choice = squares[UnityEngine.Random.Range(0, squares.Count)];
         choice.setBusy();
-        Debug.Log("Side: "+ choice.side + ", center: " + choice.center + ", num choices: " + squares.Count);
+        //Debug.Log("Side: "+ choice.side + ", center: " + choice.center + ", num choices: " + squares.Count);
         return choice;
     }
 }
