@@ -5,7 +5,7 @@ using UnityEngine;
 public class PanoramaCylinder : MonoBehaviour {
 	public Shader cylinderShader;
 	public float shiftU = 0.0f;
-	public float scaleCylinderV = 0.4f;
+	public float scaleCylinderV = 0.1f;
 	private MeshRenderer meshRenderer = null;
 	public RenderTexture tex;
 
