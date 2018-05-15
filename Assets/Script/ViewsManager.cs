@@ -19,8 +19,9 @@ public class ViewsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !isTransitioning)
+        if ((Input.GetMouseButtonDown(0)) && !isTransitioning)
         {
+            Debug.Log("Key pressed");
             cylinder.GetComponent<Animator>().SetBool("transition", true);
             if (isMain)
             {
