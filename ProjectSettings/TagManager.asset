@@ -14,7 +14,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - 50s
   - 
   - 
   - 
@@ -41,4 +41,25 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: 50s
+    uniqueID: 2383623713
+    locked: 0
+  - name: 60s
+    uniqueID: 840079403
+    locked: 0
+  - name: 70s
+    uniqueID: 2931269377
+    locked: 0
+  - name: 80s
+    uniqueID: 1505578027
+    locked: 0
+  - name: 90s
+    uniqueID: 704781955
+    locked: 0
+  - name: 00s
+    uniqueID: 2185572219
+    locked: 0
+  - name: 10s
+    uniqueID: 313580773
     locked: 0

@@ -1,10 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
+using System.Collections.Generic;
 
 public class SliceController : MonoBehaviour
 {
     private RectTransform canvasRect;
     public GameObject image;
+    public string category = null;
+    public string decade = null;
+    public int maxImages = 30;
+    public float widthRatio = 0.75f;
 
     void createBorders(RectTransform canvasRect)
     {
@@ -15,10 +21,11 @@ public class SliceController : MonoBehaviour
         {
             for (int sel = 0; sel < 2; sel++)
             {
+                float factor = (dir + 1) / 2f * sel * (1-widthRatio);
                 GameObject border = new GameObject();
                 border.name = "border";
                 border.transform.SetParent(borders.transform);
-                border.transform.position = canvasRect.position + new Vector3(sel * dir * (canvasRect.rect.width / 2f + 5f), (1 - sel) * dir * (canvasRect.rect.height / 2f + 5f), 0);
+                border.transform.position = canvasRect.position + new Vector3(sel * dir * (canvasRect.rect.width / 2f + 5f) - canvasRect.rect.width * factor, (1 - sel) * dir * (canvasRect.rect.height / 2f + 5f), 0);
                 border.AddComponent<BoxCollider2D>();
                 border.GetComponent<BoxCollider2D>().size = new Vector2((canvasRect.rect.width * (1 - sel) + 10 * sel), (canvasRect.rect.height * sel + 10 * (1 - sel)));
             }
@@ -34,9 +41,9 @@ public class SliceController : MonoBehaviour
         images.name = "Images";
         images.transform.SetParent(canvasRect.transform);
         float available_size = (1-(filenames.Length+1)*0.01f)*Mathf.Min(canvasRect.rect.width, canvasRect.rect.height);
-        float min_width = available_size/4;
-        float max_width = available_size;
-        SquaresTree sqt = new SquaresTree(canvasRect.rect.width, canvasRect.rect.height, max_width, min_width, canvasRect.position);
+        float min_width = canvasRect.rect.width/12f;
+        float max_width = canvasRect.rect.width/10f;
+        SquaresTree sqt = new SquaresTree(canvasRect.rect.width*widthRatio, canvasRect.rect.height, max_width, min_width, canvasRect.position-new Vector3(canvasRect.rect.width * (1-widthRatio) * 0.5f, 0,0));
         for (int i = 0; i < filenames.Length; i++)
         {
             SquareCell sqc = sqt.getSquare();
@@ -52,20 +59,40 @@ public class SliceController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        if(decade == null)
+        {
+            throw new System.Exception("Need a decade");
+        }
         RectTransform canvasRect = GetComponent<RectTransform>();
         createBorders(canvasRect);
-        Debug.Log("here");
-        string[] files = new string[] { "metallica-1.jpg", "metallica-45.jpg", "metallica-3.jpg", "metallica-24.jpg" };
-        //files = Directory.GetFiles("D:/testconverted/", "*.dxt");
+
+        List<string> files = new List<string>();
+        string basedir = "D:/Mes documents/cern/photos_low/" + decade + "/";
+        if (category != null)
+        {
+            basedir += category + "/";
+        }
+        files.AddRange(Directory.GetFiles(basedir, "*.*", SearchOption.AllDirectories));
+
+        List<string> files_init = new List<string>(files);
         string imagesPath = Application.dataPath + "/Images/";
 
-        string[] images = new string[50];
+        int numImages = Mathf.Min(maxImages, files.Count);
+        Debug.Log(numImages +" num files"+ files.Count);
+        string[] images = new string[numImages];
 		for (int i = 0; i < images.Length; i++)
         {
-			images[i] = imagesPath + files[i % files.Length];
+            if (files.Count == 0)
+            {
+                files = new List<string>(files_init);
+            }
+            int choice = Random.Range(0, files.Count);
+            //images[i] = imagesPath + files[i % files.Length];
+            images[i] = files[choice];
+            files.RemoveAt(choice);
         }
         spawnImages(canvasRect, images);
+        Debug.Log(files);
 		//new SquaresAssigner(100, 100, 50, 10, new Vector3(0, 0, canvasRect.position.z));
         //SquaresTree sq = new SquaresTree(8, 8, 4, 1);
     }
