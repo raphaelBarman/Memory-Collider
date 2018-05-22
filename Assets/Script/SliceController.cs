@@ -41,8 +41,8 @@ public class SliceController : MonoBehaviour
         images.name = "Images";
         images.transform.SetParent(canvasRect.transform);
         float available_size = (1-(filenames.Length+1)*0.01f)*Mathf.Min(canvasRect.rect.width, canvasRect.rect.height);
-        float min_width = canvasRect.rect.width/12f;
-        float max_width = canvasRect.rect.width/10f;
+        float min_width = canvasRect.rect.width/10f;
+        float max_width = canvasRect.rect.width/8f;
         SquaresTree sqt = new SquaresTree(canvasRect.rect.width*widthRatio, canvasRect.rect.height, max_width, min_width, canvasRect.position-new Vector3(canvasRect.rect.width * (1-widthRatio) * 0.5f, 0,0));
         for (int i = 0; i < filenames.Length; i++)
         {
@@ -67,7 +67,7 @@ public class SliceController : MonoBehaviour
         createBorders(canvasRect);
 
         List<string> files = new List<string>();
-        string basedir = "D:/Mes documents/cern/photos_low/" + decade + "/";
+        string basedir = "D:/CERN/Selection/cern/photos_low/" + decade + "/";
         if (category != null)
         {
             basedir += category + "/";
