@@ -41,8 +41,8 @@ public class SliceController : MonoBehaviour
         images.name = "Images";
         images.transform.SetParent(canvasRect.transform);
         float available_size = (1-(filenames.Length+1)*0.01f)*Mathf.Min(canvasRect.rect.width, canvasRect.rect.height);
-        float min_width = canvasRect.rect.width/10f;
-        float max_width = canvasRect.rect.width/8f;
+        float min_width = canvasRect.rect.width/8f * Mathf.Max(15f/(filenames.Length+1f), 1f);
+        float max_width = canvasRect.rect.width/7.5f * Mathf.Max(15f / (filenames.Length + 1f), 1f);
         SquaresTree sqt = new SquaresTree(canvasRect.rect.width*widthRatio, canvasRect.rect.height, max_width, min_width, canvasRect.position-new Vector3(canvasRect.rect.width * (1-widthRatio) * 0.5f, 0,0));
         for (int i = 0; i < filenames.Length; i++)
         {
@@ -78,7 +78,7 @@ public class SliceController : MonoBehaviour
         string imagesPath = Application.dataPath + "/Images/";
 
         int numImages = Mathf.Min(maxImages, files.Count);
-        Debug.Log(numImages +" num files"+ files.Count);
+        //Debug.Log(numImages +" num files"+ files.Count);
         string[] images = new string[numImages];
 		for (int i = 0; i < images.Length; i++)
         {
@@ -92,7 +92,7 @@ public class SliceController : MonoBehaviour
             files.RemoveAt(choice);
         }
         spawnImages(canvasRect, images);
-        Debug.Log(files);
+        //Debug.Log(files);
 		//new SquaresAssigner(100, 100, 50, 10, new Vector3(0, 0, canvasRect.position.z));
         //SquaresTree sq = new SquaresTree(8, 8, 4, 1);
     }

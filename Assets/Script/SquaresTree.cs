@@ -12,7 +12,6 @@ public class SquaresTree {
         int numRows = Mathf.FloorToInt(height/maxSize);
         for (int i = 0; i < numColumns; i++) {
             for (int j = 0; j < numRows; j++) {
-                Debug.Log(offset);
                 topCells.Add(new SquareCell(maxSize, minSize, offset + new Vector3(-width/2.0f + (i+0.5f)*maxSize, -height/2.0f + (j+0.5f)*maxSize)));
             }
         }

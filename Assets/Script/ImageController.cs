@@ -69,6 +69,14 @@ public class ImageController : MonoBehaviour
     void Update()
     {
         transform.eulerAngles = defaultRot;
+        if(rb.velocity.x + rb.velocity.y < 0.0001)
+        {
+            float dirX = (float)Random.Range(0, 1);
+            dirX = 2f * dirX - 1f;
+            float dirY = (float)Random.Range(0, 1);
+            dirY = 2f * dirY - 1f;
+            rb.AddForce(new Vector2(dirX * Random.Range(0f, maxSpeed * 0.05f), dirY * Random.Range(0f, maxSpeed * 0.05f)));
+        }
         rb.velocity = new Vector2(Mathf.Min(rb.velocity.x, maxSpeed), Mathf.Min(rb.velocity.y, maxSpeed));
     }
 
