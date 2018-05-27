@@ -2215,7 +2215,7 @@ Prefab:
     - target: {fileID: 114157288930450870, guid: dec1e15424d5d194d96b439c1f267690,
         type: 2}
       propertyPath: maxImages
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dec1e15424d5d194d96b439c1f267690, type: 2}
@@ -8923,7 +8923,7 @@ Prefab:
     - target: {fileID: 114157288930450870, guid: dec1e15424d5d194d96b439c1f267690,
         type: 2}
       propertyPath: maxImages
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dec1e15424d5d194d96b439c1f267690, type: 2}
@@ -18022,7 +18022,7 @@ Prefab:
     - target: {fileID: 114157288930450870, guid: dec1e15424d5d194d96b439c1f267690,
         type: 2}
       propertyPath: maxImages
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dec1e15424d5d194d96b439c1f267690, type: 2}
@@ -44330,7 +44330,7 @@ Prefab:
     - target: {fileID: 114157288930450870, guid: dec1e15424d5d194d96b439c1f267690,
         type: 2}
       propertyPath: maxImages
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dec1e15424d5d194d96b439c1f267690, type: 2}
@@ -48786,7 +48786,7 @@ Prefab:
     - target: {fileID: 114157288930450870, guid: dec1e15424d5d194d96b439c1f267690,
         type: 2}
       propertyPath: maxImages
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dec1e15424d5d194d96b439c1f267690, type: 2}
@@ -58391,7 +58391,7 @@ Prefab:
     - target: {fileID: 114157288930450870, guid: dec1e15424d5d194d96b439c1f267690,
         type: 2}
       propertyPath: maxImages
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dec1e15424d5d194d96b439c1f267690, type: 2}
@@ -68062,7 +68062,7 @@ Prefab:
     - target: {fileID: 114157288930450870, guid: dec1e15424d5d194d96b439c1f267690,
         type: 2}
       propertyPath: maxImages
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dec1e15424d5d194d96b439c1f267690, type: 2}
