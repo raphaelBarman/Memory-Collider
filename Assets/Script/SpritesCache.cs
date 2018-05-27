@@ -6,6 +6,7 @@ public class SpritesCache : MonoBehaviour {
     private static SpritesCache _instance;
 
     private Dictionary<string, Sprite> spriteCache = new Dictionary<string, Sprite>();
+    private Dictionary<Texture2D, Sprite> spriteCacheTex = new Dictionary<Texture2D, Sprite>();
 
     public static SpritesCache instance
     {
@@ -27,6 +28,20 @@ public class SpritesCache : MonoBehaviour {
         {
             sprite = IMG2Sprite.instance.LoadNewSprite(path);
             spriteCache.Add(path, sprite);
+        }
+
+        return sprite;
+    }
+
+    public Sprite LoadSprite(Texture2D texture)
+    {
+        Sprite sprite = null;
+        if (!spriteCacheTex.TryGetValue(texture, out sprite))
+        {
+            sprite = IMG2Sprite.instance.LoadNewSprite(texture);
+            Debug.Log("Loading texture"+ sprite);
+
+            spriteCacheTex.Add(texture, sprite);
         }
 
         return sprite;

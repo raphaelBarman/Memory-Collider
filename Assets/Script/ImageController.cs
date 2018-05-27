@@ -47,6 +47,26 @@ public class ImageController : MonoBehaviour
         bc.transform.localScale = scale;
     }
 
+    public void SetUpImage(Texture2D texture)
+    {
+        Image img = GetComponent<Image>();
+        img.enabled = true;
+
+        img.sprite = SpritesCache.instance.LoadSprite(texture);
+        Vector3 scale;
+        if (img.sprite.texture.width > img.sprite.texture.height)
+        {
+            scale = new Vector3(1f, (float)img.sprite.texture.height / (float)img.sprite.texture.width, 1f);
+        }
+        else
+        {
+            scale = new Vector3((float)img.sprite.texture.width / (float)img.sprite.texture.height, 1f, 1f);
+        }
+        img.transform.localScale = scale;
+        bc = GetComponent<BoxCollider2D>();
+        bc.transform.localScale = scale;
+    }
+
     public void SetSize(float width, float height)
     {
         RectTransform r = GetComponent<RectTransform>();
