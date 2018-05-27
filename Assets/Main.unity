@@ -67689,7 +67689,7 @@ MonoBehaviour:
   cylinder: {fileID: 356019420}
   isMain: 1
   isTransitioning: 0
-  preload: 1
+  preload: 0
   decades: []
   categories: []
 --- !u!114 &1993205267

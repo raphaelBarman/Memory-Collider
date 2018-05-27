@@ -56,6 +56,28 @@ public class SliceController : MonoBehaviour
 			(img.GetComponent<ImageController>()).SetPos(sqc.center);
         }
     }
+
+    void spawnImages(RectTransform canvasRect, Texture2D[] textures)
+    {
+        GameObject images = new GameObject();
+        images.name = "Images";
+        images.transform.SetParent(canvasRect.transform);
+        float available_size = (1 - (textures.Length + 1) * 0.01f) * Mathf.Min(canvasRect.rect.width, canvasRect.rect.height);
+        float min_width = canvasRect.rect.width / 8f * Mathf.Max(15f / (filenames.Length + 1f), 1f);
+        float max_width = canvasRect.rect.width / 7.5f * Mathf.Max(15f / (filenames.Length + 1f), 1f);
+        SquaresTree sqt = new SquaresTree(canvasRect.rect.width * widthRatio, canvasRect.rect.height, max_width, min_width, canvasRect.position - new Vector3(canvasRect.rect.width * (1 - widthRatio) * 0.5f, 0, 0));
+        for (int i = 0; i < textures.Length; i++)
+        {
+            SquareCell sqc = sqt.getSquare();
+            float size = sqc.side;
+            GameObject img = Instantiate(image, sqc.center, Quaternion.identity);
+            img.name = string.Format("image{0}", i);
+            img.transform.SetParent(images.transform);
+            (img.GetComponent<ImageController>()).SetUpImage(textures[i]);
+            (img.GetComponent<ImageController>()).SetSize(size, size);
+            (img.GetComponent<ImageController>()).SetPos(sqc.center);
+        }
+    }
     // Use this for initialization
     void Start()
     {
@@ -67,12 +89,15 @@ public class SliceController : MonoBehaviour
         createBorders(canvasRect);
 
         List<string> files = new List<string>();
-        string basedir = "D:/CERN/Selection/cern/photos_low/" + decade + "/";
+        //        string basedir = "D:/CERN/Selection/cern/photos_low/" + decade + "/";
+        Texture2D[] textures = Resources.LoadAll<Texture2D>("photos_low/50s/media");
+        Debug.Log("Length is of " + textures.Length);
+        string basedir = Application.dataPath + "/Ressources/Images/photos_low/" + decade + "/";
         if (category != null)
         {
             basedir += category + "/";
         }
-        files.AddRange(Directory.GetFiles(basedir, "*.*", SearchOption.AllDirectories));
+        files.AddRange(Directory.GetFiles(basedir, "*.jpg", SearchOption.AllDirectories));
 
         List<string> files_init = new List<string>(files);
         string imagesPath = Application.dataPath + "/Images/";
