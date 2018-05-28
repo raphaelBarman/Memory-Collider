@@ -14,6 +14,8 @@ public class CameraOffset : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         Camera cam = GetComponent<Camera>();
+        //cam.transform.position = new Vector3(cam.transform.position.x, curr_y - (float)((int)(curr_y)), cam.transform.position.z);
+
         curr_y = cam.transform.position.y;
         if (Mathf.Abs(prev_y-curr_y) > 0.5)
         {
