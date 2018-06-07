@@ -51,6 +51,7 @@ public class ViewsManager : MonoBehaviour
             }
         }
 
+
         numCategories = categories.Count;
         currentView = main;
         isMain = true;
@@ -144,8 +145,6 @@ public class ViewsManager : MonoBehaviour
 
         to.GetComponent<Animator>().enabled = true;
 
-        Debug.Log(next);
-        Debug.Log(to.GetComponent<Animator>().GetBool("Next"));
         from.GetComponent<Animator>().SetTrigger("Exit");
         StartCoroutine(DisableGameObject(from));
     }

@@ -39,7 +39,6 @@ public class SpritesCache : MonoBehaviour {
         if (!spriteCacheTex.TryGetValue(texture, out sprite))
         {
             sprite = IMG2Sprite.instance.LoadNewSprite(texture);
-            Debug.Log("Loading texture"+ sprite);
 
             spriteCacheTex.Add(texture, sprite);
         }

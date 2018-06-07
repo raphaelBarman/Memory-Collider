@@ -19,7 +19,6 @@ public class SquaresAssigner {
                 cells[i].Add(new Square(minSize, offset + new Vector2(-width/2 + (i+0.5f)*minSize, -height/2 + (j+0.5f)*minSize)));
             }
         }
-        Debug.Log(cells[0].Count);
     }
 
     public Square getSquare() {

@@ -19,7 +19,6 @@ public class CameraOffset : MonoBehaviour {
         curr_y = cam.transform.position.y;
         if (Mathf.Abs(prev_y-curr_y) > 0.5)
         {
-            Debug.Log("reset camera");
             cam.transform.position = new Vector3(cam.transform.position.x, prev_y, cam.transform.position.z);
         }
         prev_y = curr_y;

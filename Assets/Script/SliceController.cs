@@ -99,7 +99,6 @@ public class SliceController : MonoBehaviour
         List<Texture2D> textures_init = new List<Texture2D>(textures);
 
         int numImages = Mathf.Min(maxImages, textures.Count);
-        Debug.Log(numImages +" num files"+ textures.Count);
         Texture2D[] images = new Texture2D[numImages];
 		for (int i = 0; i < images.Length; i++)
         {
